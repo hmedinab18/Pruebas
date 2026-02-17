@@ -398,9 +398,23 @@
                     <div class="card border-l-4 border-l-entel-blue">
                         <h2 class="card-header text-entel-blue">3. Selección de Plan y Tarifas</h2>
                         <div class="bg-blue-50 p-4 rounded-md border border-blue-100 mb-6">
-                            <div class="grid sm:grid-cols-2 gap-6">
-                                <div><label class="input-label text-blue-800">Plan Contratado</label><select id="planSelect" class="input border-blue-300"><option value="">— Seleccionar Plan —</option></select></div>
-                                <div><label class="input-label text-blue-800">Tarifa Mensual</label><input id="TARIF_MENS" class="input border-blue-300 font-bold text-entel-blue" readonly></div>
+                            <div class="grid sm:grid-cols-12 gap-6">
+                                <div class="sm:col-span-4">
+                                    <label class="input-label text-blue-800">Periodo de Contrato</label>
+                                    <select id="periodSelect" class="input border-blue-300 font-bold">
+                                        <option value="36 Meses" selected>36 Meses</option>
+                                        <option value="24 Meses">24 Meses</option>
+                                        <option value="12 Meses">12 Meses</option>
+                                    </select>
+                                </div>
+                                <div class="sm:col-span-5">
+                                    <label class="input-label text-blue-800">Plan Contratado</label>
+                                    <select id="planSelect" class="input border-blue-300"><option value="">— Seleccionar Plan —</option></select>
+                                </div>
+                                <div class="sm:col-span-3">
+                                    <label class="input-label text-blue-800">Tarifa Mensual</label>
+                                    <input id="TARIF_MENS" class="input border-blue-300 font-bold text-entel-blue" readonly>
+                                </div>
                             </div>
                         </div>
                         <div class="grid sm:grid-cols-3 gap-4">
@@ -692,11 +706,33 @@
             { u: 'MOB_NARFUENTES', p: 'Mob_2025-45225', role: 'normal', restrictIp: true }
         ];
 
+        // ACTUALIZADA: Matriz completa basada en TABLA DE PLANES.xlsx - PLANES.csv
         const SEED_PLANS = [
-            { name: "INTERNET FIBRA + 100 MBPS - 36 Meses", minGar: "70%", vmb: 100, vminb: 70, vms: 100, vmins: 70, cargoFijo: "S/ 160.00", tarif: "S/ 160.00", plazo: "36 Meses", type: "internet" },
-            { name: "INTERNET FIBRA + 200 MBPS - 36 Meses", minGar: "70%", vmb: 200, vminb: 140, vms: 200, vmins: 140, cargoFijo: "S/ 230.00", tarif: "S/ 230.00", plazo: "36 Meses", type: "internet" },
-            { name: "INTERNET FIBRA + 500 MBPS - 36 Meses", minGar: "70%", vmb: 500, vminb: 350, vms: 500, vmins: 350, cargoFijo: "S/ 370.00", tarif: "S/ 370.00", plazo: "36 Meses", type: "internet" },
-            { name: "INTERNET FIBRA + 1000 MBPS - 36 Meses", minGar: "70%", vmb: 1000, vminb: 700, vms: 1000, vmins: 700, cargoFijo: "S/ 550.00", tarif: "S/ 550.00", plazo: "36 Meses", type: "internet" }
+            // INTERNET 100
+            { name: "INTERNET FIBRA + 100 MBPS", tarif: "160.00", plazo: "36 Meses", minGar: "70%", vmb: 100, vminb: 70, vms: 100, vmins: 70, type: 'internet' },
+            { name: "INTERNET FIBRA + 100 MBPS", tarif: "210.00", plazo: "24 Meses", minGar: "70%", vmb: 100, vminb: 70, vms: 100, vmins: 70, type: 'internet' },
+            { name: "INTERNET FIBRA + 100 MBPS", tarif: "250.00", plazo: "12 Meses", minGar: "70%", vmb: 100, vminb: 70, vms: 100, vmins: 70, type: 'internet' },
+            // INTERNET 200
+            { name: "INTERNET FIBRA + 200 MBPS", tarif: "230.00", plazo: "36 Meses", minGar: "70%", vmb: 200, vminb: 140, vms: 200, vmins: 140, type: 'internet' },
+            { name: "INTERNET FIBRA + 200 MBPS", tarif: "300.00", plazo: "24 Meses", minGar: "70%", vmb: 200, vminb: 140, vms: 200, vmins: 140, type: 'internet' },
+            { name: "INTERNET FIBRA + 200 MBPS", tarif: "340.00", plazo: "12 Meses", minGar: "70%", vmb: 200, vminb: 140, vms: 200, vmins: 140, type: 'internet' },
+            // INTERNET 500
+            { name: "INTERNET FIBRA + 500 MBPS", tarif: "370.00", plazo: "36 Meses", minGar: "70%", vmb: 500, vminb: 350, vms: 500, vmins: 350, type: 'internet' },
+            { name: "INTERNET FIBRA + 500 MBPS", tarif: "420.00", plazo: "24 Meses", minGar: "70%", vmb: 500, vminb: 350, vms: 500, vmins: 350, type: 'internet' },
+            { name: "INTERNET FIBRA + 500 MBPS", tarif: "460.00", plazo: "12 Meses", minGar: "70%", vmb: 500, vminb: 350, vms: 500, vmins: 350, type: 'internet' },
+            // INTERNET 1000
+            { name: "INTERNET FIBRA + 1000 MBPS", tarif: "550.00", plazo: "36 Meses", minGar: "70%", vmb: 1000, vminb: 700, vms: 1000, vmins: 700, type: 'internet' },
+            { name: "INTERNET FIBRA + 1000 MBPS", tarif: "610.00", plazo: "24 Meses", minGar: "70%", vmb: 1000, vminb: 700, vms: 1000, vmins: 700, type: 'internet' },
+            { name: "INTERNET FIBRA + 1000 MBPS", tarif: "660.00", plazo: "12 Meses", minGar: "70%", vmb: 1000, vminb: 700, vms: 1000, vmins: 700, type: 'internet' },
+            
+            // PACK 100 (Simulación basada en patrón, ya que solo había una muestra)
+            { name: "PACK FIBRA + 100 MBPS", tarif: "169.90", plazo: "36 Meses", minGar: "70%", vmb: 100, vminb: 70, vms: 100, vmins: 70, type: 'pack' },
+            { name: "PACK FIBRA + 100 MBPS", tarif: "219.90", plazo: "24 Meses", minGar: "70%", vmb: 100, vminb: 70, vms: 100, vmins: 70, type: 'pack' },
+            { name: "PACK FIBRA + 100 MBPS", tarif: "259.90", plazo: "12 Meses", minGar: "70%", vmb: 100, vminb: 70, vms: 100, vmins: 70, type: 'pack' },
+            // PACK 200
+            { name: "PACK FIBRA + 200 MBPS", tarif: "239.90", plazo: "36 Meses", minGar: "70%", vmb: 200, vminb: 140, vms: 200, vmins: 140, type: 'pack' },
+            { name: "PACK FIBRA + 200 MBPS", tarif: "309.90", plazo: "24 Meses", minGar: "70%", vmb: 200, vminb: 140, vms: 200, vmins: 140, type: 'pack' },
+            { name: "PACK FIBRA + 200 MBPS", tarif: "349.90", plazo: "12 Meses", minGar: "70%", vmb: 200, vminb: 140, vms: 200, vmins: 140, type: 'pack' }
         ];
 
         let state = { currentUser: null, users: [], plans: [], ip: null, serviceType: 'internet', announcements: [], downloads: [] };
@@ -940,15 +976,48 @@
             byId('DIA').value = String(d.getDate()).padStart(2,'0');
             byId('MES').value = getMonthName(d.getMonth());
             byId('ANO').value = d.getFullYear();
-            updatePlanSelect();
-            updateFileListPreview();
+            
+            // Add listeners for dropdown logic
+            byId('periodSelect').onchange = updatePlanSelect;
             byId('planSelect').onchange = onPlanSelectChange;
             byId('btnExport').onclick = handleExportAll;
+            
+            // Initial render
+            updatePlanSelect();
+            updateFileListPreview();
         }
 
         function updatePlanSelect() {
-            const sel = byId('planSelect'); sel.innerHTML = '<option value="">— Seleccionar Plan —</option>';
-            state.plans.forEach(p => { const opt = document.createElement('option'); opt.value = p.name; opt.textContent = p.name; sel.appendChild(opt); });
+            const period = byId('periodSelect').value;
+            const currentService = state.serviceType; // 'internet' or 'pack'
+            const sel = byId('planSelect'); 
+            
+            sel.innerHTML = '<option value="">— Seleccionar Plan —</option>';
+            
+            // Filter plans based on Service Type AND Period
+            const filtered = state.plans.filter(p => p.type === currentService && p.plazo === period);
+            
+            filtered.forEach(p => { 
+                const opt = document.createElement('option'); 
+                opt.value = p.name; 
+                opt.textContent = p.name; 
+                sel.appendChild(opt); 
+            });
+            
+            // Clear details if no match or change
+            resetPlanDetails();
+        }
+        
+        function resetPlanDetails() {
+            byId('NOM_PLAN').value = '';
+            byId('MIN_GAR').value = '';
+            byId('PLAZO_CONT').value = '';
+            byId('VEL_MAX_BAJ').value = '';
+            byId('VEL_MIN_BAJ').value = '';
+            byId('VEL_MAX_SUB').value = '';
+            byId('VEL_MIN_SUB').value = '';
+            byId('TARIF_MENS').value = '';
+            byId('CARGO_FIJO_VAL').value = '';
         }
 
         function updateFileListPreview() {
@@ -962,11 +1031,20 @@
         }
 
         function onPlanSelectChange(e) {
-            const p = state.plans.find(x => x.name === e.target.value); if (!p) return;
-            byId('NOM_PLAN').value = p.name; byId('MIN_GAR').value = p.minGar || '70%';
-            byId('VEL_MAX_BAJ').value = p.vmb; byId('VEL_MIN_BAJ').value = p.vminb;
-            byId('VEL_MAX_SUB').value = p.vms; byId('VEL_MIN_SUB').value = p.vmins;
-            byId('TARIF_MENS').value = p.tarif; byId('PLAZO_CONT').value = p.plazo || '36';
+            const period = byId('periodSelect').value;
+            const currentService = state.serviceType;
+            const p = state.plans.find(x => x.name === e.target.value && x.plazo === period && x.type === currentService); 
+            
+            if (!p) return;
+            
+            byId('NOM_PLAN').value = p.name; 
+            byId('MIN_GAR').value = p.minGar || '70%';
+            byId('VEL_MAX_BAJ').value = p.vmb; 
+            byId('VEL_MIN_BAJ').value = p.vminb;
+            byId('VEL_MAX_SUB').value = p.vms; 
+            byId('VEL_MIN_SUB').value = p.vmins;
+            byId('TARIF_MENS').value = p.tarif; 
+            byId('PLAZO_CONT').value = p.plazo; // already has "Meses" in it? Or just number? Seed has "36 Meses"
             byId('CARGO_FIJO_VAL').value = p.cargoFijo || p.tarif;
         }
 
@@ -1056,7 +1134,11 @@
             }
         }
 
-        function setServiceType(t) { state.serviceType = t; updateFileListPreview(); }
+        function setServiceType(t) { 
+            state.serviceType = t; 
+            updateFileListPreview(); 
+            updatePlanSelect(); // Re-filter plans when service type changes
+        }
 
         function renderLogs() {
             const tbody = byId('logsTableBody'); const logs = JSON.parse(localStorage.getItem(KEYS.LOGS)) || []; tbody.innerHTML = '';
